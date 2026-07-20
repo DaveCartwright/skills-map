@@ -5,20 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>2.1 Test Driven Development</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Handlee&display=swap"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap"
       rel="stylesheet"
     />
     <style>
       body {
-        font-family: "Handlee", cursive;
+        font-family: "JetBrains Mono", monospace;
         max-width: 900px;
         margin: 2rem auto;
         padding: 0 1rem;
         color: #1a1a1a;
       }
       h1 {
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
+        font-size: 2rem;
       }
       table {
         width: 100%;
@@ -48,16 +47,15 @@
         transform-origin: bottom left;
         margin-left: 1.5rem;
       }
-      td:first-child {
+      tbody tr:not(.section-header) td:first-child {
         border-right: 1px solid #ccc;
       }
       tbody tr:not(.section-header) td:first-child {
         text-align: right;
       }
-      th:not(:first-child),
-      td:not(:first-child) {
+      td:last-child {
         text-align: center;
-        width: 100px;
+        width: 50px;
       }
       tbody tr:not(.section-header):nth-child(even) td {
         background: #f7f7f7;
@@ -68,47 +66,90 @@
       tbody tr:not(.section-header) td {
         font-weight: normal;
       }
+      tbody tr.section-header {
+        position: sticky;
+        top: 229px;
+        z-index: 5;
+        background: #fff;
+        box-shadow: 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+      }
       tbody tr.section-header td {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         text-transform: uppercase;
         letter-spacing: 0.08em;
         color: #2c3e6b;
         padding-top: 1.2rem;
-        overflow: visible;
-        white-space: nowrap;
-      }
-      tbody tr.section-header td:empty {
-        padding: 0;
+        text-align: right;
       }
       input[type="checkbox"] {
-        width: 18px;
-        height: 18px;
+        appearance: none;
+        -webkit-appearance: none;
+        width: 22px;
+        height: 22px;
+        border: 2px solid #aaa;
+        border-radius: 4px;
         cursor: pointer;
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        transition:
+          background 0.2s,
+          border-color 0.2s;
+      }
+      input[type="checkbox"]:checked {
+        background: #2c3e6b;
+        border-color: #2c3e6b;
+      }
+      input[type="checkbox"]:checked::after {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 1px;
+        width: 7px;
+        height: 12px;
+        border: 2.5px solid #fff;
+        border-top: none;
+        border-left: none;
+        transform: rotate(45deg);
       }
     </style>
   </head>
   <body>
-    <h1>2.1 Test Driven Development</h1>
-    <svg
-      id="radial"
-      width="320"
-      height="320"
-      viewBox="0 0 320 320"
-      style="display: block; margin: 2rem auto"
-    ></svg>
+    <div
+      id="sticky-chart"
+      style="
+        position: sticky;
+        top: 0;
+        background: #fff;
+        z-index: 10;
+        padding: 0.5rem 0;
+        display: flex;
+        align-items: center;
+      "
+    >
+      <h1 style="margin: 0; flex: 1">2.1 Test Driven Development</h1>
+      <svg id="radial" width="213" height="213" viewBox="0 0 320 320"></svg>
+    </div>
     <table>
       <tbody>
         <tr class="section-header">
-          <td></td>
-          <td>Intermediate</td>
-          <td></td>
-          <td></td>
+          <td colspan="2">
+            Intermediate<span
+              style="
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background: #b5d99c;
+                margin-left: 0.5rem;
+                vertical-align: middle;
+              "
+            ></span>
+          </td>
         </tr>
         <tr class="intermediate">
           <td>Habitually uses TDD when developing software</td>
           <td><input type="checkbox" /></td>
-          <td></td>
-          <td></td>
         </tr>
         <tr class="intermediate">
           <td>
@@ -116,8 +157,6 @@
             communicate intent, but may not always succeed
           </td>
           <td><input type="checkbox" /></td>
-          <td></td>
-          <td></td>
         </tr>
         <tr class="intermediate">
           <td>
@@ -125,14 +164,10 @@
             services (other services, databases, file systems, etc)
           </td>
           <td><input type="checkbox" /></td>
-          <td></td>
-          <td></td>
         </tr>
         <tr class="intermediate">
           <td>Avoids common TDD pitfalls</td>
           <td><input type="checkbox" /></td>
-          <td></td>
-          <td></td>
         </tr>
         <tr class="intermediate">
           <td>
@@ -140,29 +175,32 @@
             brittle tests and higher maintenance
           </td>
           <td><input type="checkbox" /></td>
-          <td></td>
-          <td></td>
         </tr>
         <tr class="section-header">
-          <td></td>
-          <td>Advanced</td>
-          <td></td>
-          <td></td>
+          <td colspan="2">
+            Advanced<span
+              style="
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background: #e8a87c;
+                margin-left: 0.5rem;
+                vertical-align: middle;
+              "
+            ></span>
+          </td>
         </tr>
         <tr class="advanced">
           <td>Strives to keep the TDD cadence fast</td>
-          <td></td>
           <td><input type="checkbox" /></td>
-          <td></td>
         </tr>
         <tr class="advanced">
           <td>
             Consistently writes tests that are simple, maintainable, robust and
             communicate intent
           </td>
-          <td></td>
           <td><input type="checkbox" /></td>
-          <td></td>
         </tr>
         <tr class="advanced">
           <td>
@@ -171,44 +209,41 @@
             scenarios (e.g. those involving time zones, inherent randomness,
             concurrency, etc)
           </td>
-          <td></td>
           <td><input type="checkbox" /></td>
-          <td></td>
         </tr>
         <tr class="advanced">
           <td>Critically evaluates and champions worthwhile testing tools</td>
-          <td></td>
           <td><input type="checkbox" /></td>
-          <td></td>
         </tr>
         <tr class="advanced">
           <td>Supports less proficient software engineers with TDD</td>
-          <td></td>
           <td><input type="checkbox" /></td>
-          <td></td>
         </tr>
         <tr class="advanced">
           <td>Encourages TDD within their team</td>
-          <td></td>
           <td><input type="checkbox" /></td>
-          <td></td>
         </tr>
         <tr class="section-header">
-          <td></td>
-          <td>Expert</td>
-          <td></td>
-          <td></td>
+          <td colspan="2">
+            Expert<span
+              style="
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background: #e87c7c;
+                margin-left: 0.5rem;
+                vertical-align: middle;
+              "
+            ></span>
+          </td>
         </tr>
         <tr class="expert">
           <td>Knows when to break the rules</td>
-          <td></td>
-          <td></td>
           <td><input type="checkbox" /></td>
         </tr>
         <tr class="expert">
           <td>Encourages TDD beyond their team</td>
-          <td></td>
-          <td></td>
           <td><input type="checkbox" /></td>
         </tr>
         <tr class="expert">
@@ -216,8 +251,6 @@
             Contributes to the TDD body of work through articles, public
             speaking, open source, etc
           </td>
-          <td></td>
-          <td></td>
           <td><input type="checkbox" /></td>
         </tr>
       </tbody>
@@ -229,14 +262,12 @@
       const gapPx = 4;
       const ringGap = 4;
       const numRings = 3;
-      // Derive ring dimensions from the SVG element's rendered size
-      const svgSize = svgEl.getBoundingClientRect().width || 320;
-      const availableR = svgSize / 2 - padding;
+      const size = 320;
+      const availableR = size / 2 - padding;
       const innerR = availableR * 0.2;
       const ringWidth =
         (availableR - innerR - (numRings - 1) * ringGap) / numRings;
       const outerR = availableR;
-      const size = svgSize;
       const cx = size / 2,
         cy = size / 2;
       svgEl.setAttribute("viewBox", `0 0 ${size} ${size}`);
@@ -297,7 +328,7 @@
             );
             path.setAttribute("d", d);
             path.setAttribute("fill", "transparent");
-            path.setAttribute("stroke", "#888");
+            path.setAttribute("stroke", "none");
             path.setAttribute("stroke-width", "1.5");
             path.style.transition = "fill 0.4s ease";
             svgEl.appendChild(path);
@@ -337,7 +368,7 @@
         pathMap.forEach(({ path, level }, cb) => {
           const checked = cb.checked;
           path.setAttribute("fill", checked ? colors[level] : "transparent");
-          path.setAttribute("stroke", checked ? "#1a1a1a" : "#888");
+          path.setAttribute("stroke", "none");
         });
       }
 

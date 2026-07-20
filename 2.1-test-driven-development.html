@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2.1 Test Driven Development</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Handlee&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Handlee", cursive;
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+        color: #1a1a1a;
+      }
+      h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 1.3rem;
+      }
+      th,
+      td {
+        border: none;
+        padding: 0.6rem 0.8rem;
+        text-align: left;
+        vertical-align: middle;
+      }
+      th {
+        font-weight: 600;
+      }
+      th:not(:first-child) {
+        border-bottom: 1px solid #ccc;
+        vertical-align: bottom;
+        height: 120px;
+        white-space: nowrap;
+        padding-bottom: 0.8rem;
+      }
+      th:not(:first-child) span {
+        display: inline-block;
+        transform: rotate(-45deg);
+        transform-origin: bottom left;
+        margin-left: 1.5rem;
+      }
+      td:first-child {
+        border-right: 1px solid #ccc;
+      }
+      tbody tr:not(.section-header) td:first-child {
+        text-align: right;
+      }
+      th:not(:first-child),
+      td:not(:first-child) {
+        text-align: center;
+        width: 100px;
+      }
+      tbody tr:not(.section-header):nth-child(even) td {
+        background: #f7f7f7;
+      }
+      tbody tr:not(.section-header):hover td {
+        background: #e8f0fe;
+      }
+      tbody tr:not(.section-header) td {
+        font-weight: normal;
+      }
+      tbody tr.section-header td {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #2c3e6b;
+        padding-top: 1.2rem;
+        overflow: visible;
+        white-space: nowrap;
+      }
+      tbody tr.section-header td:empty {
+        padding: 0;
+      }
+      input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>2.1 Test Driven Development</h1>
+    <svg
+      id="radial"
+      width="320"
+      height="320"
+      viewBox="0 0 320 320"
+      style="display: block; margin: 2rem auto"
+    ></svg>
+    <table>
+      <tbody>
+        <tr class="section-header">
+          <td></td>
+          <td>Intermediate</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class="intermediate">
+          <td>Habitually uses TDD when developing software</td>
+          <td><input type="checkbox" /></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class="intermediate">
+          <td>
+            Strives to write tests that are simple, maintainable, robust and
+            communicate intent, but may not always succeed
+          </td>
+          <td><input type="checkbox" /></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class="intermediate">
+          <td>
+            Writes integration tests to assert interactions with common backing
+            services (other services, databases, file systems, etc)
+          </td>
+          <td><input type="checkbox" /></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class="intermediate">
+          <td>Avoids common TDD pitfalls</td>
+          <td><input type="checkbox" /></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class="intermediate">
+          <td>
+            May rely too heavily on mock objects / spies, resulting in overly
+            brittle tests and higher maintenance
+          </td>
+          <td><input type="checkbox" /></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class="section-header">
+          <td></td>
+          <td>Advanced</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class="advanced">
+          <td>Strives to keep the TDD cadence fast</td>
+          <td></td>
+          <td><input type="checkbox" /></td>
+          <td></td>
+        </tr>
+        <tr class="advanced">
+          <td>
+            Consistently writes tests that are simple, maintainable, robust and
+            communicate intent
+          </td>
+          <td></td>
+          <td><input type="checkbox" /></td>
+          <td></td>
+        </tr>
+        <tr class="advanced">
+          <td>
+            Writes integration tests to assert interactions with less common
+            backing services (e.g. message brokers, ftp servers) and for complex
+            scenarios (e.g. those involving time zones, inherent randomness,
+            concurrency, etc)
+          </td>
+          <td></td>
+          <td><input type="checkbox" /></td>
+          <td></td>
+        </tr>
+        <tr class="advanced">
+          <td>Critically evaluates and champions worthwhile testing tools</td>
+          <td></td>
+          <td><input type="checkbox" /></td>
+          <td></td>
+        </tr>
+        <tr class="advanced">
+          <td>Supports less proficient software engineers with TDD</td>
+          <td></td>
+          <td><input type="checkbox" /></td>
+          <td></td>
+        </tr>
+        <tr class="advanced">
+          <td>Encourages TDD within their team</td>
+          <td></td>
+          <td><input type="checkbox" /></td>
+          <td></td>
+        </tr>
+        <tr class="section-header">
+          <td></td>
+          <td>Expert</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class="expert">
+          <td>Knows when to break the rules</td>
+          <td></td>
+          <td></td>
+          <td><input type="checkbox" /></td>
+        </tr>
+        <tr class="expert">
+          <td>Encourages TDD beyond their team</td>
+          <td></td>
+          <td></td>
+          <td><input type="checkbox" /></td>
+        </tr>
+        <tr class="expert">
+          <td>
+            Contributes to the TDD body of work through articles, public
+            speaking, open source, etc
+          </td>
+          <td></td>
+          <td></td>
+          <td><input type="checkbox" /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <script>
+      const svgEl = document.getElementById("radial");
+      const padding = 4;
+      const gapPx = 4;
+      const ringGap = 4;
+      const numRings = 3;
+      // Derive ring dimensions from the SVG element's rendered size
+      const svgSize = svgEl.getBoundingClientRect().width || 320;
+      const availableR = svgSize / 2 - padding;
+      const innerR = availableR * 0.2;
+      const ringWidth =
+        (availableR - innerR - (numRings - 1) * ringGap) / numRings;
+      const outerR = availableR;
+      const size = svgSize;
+      const cx = size / 2,
+        cy = size / 2;
+      svgEl.setAttribute("viewBox", `0 0 ${size} ${size}`);
+
+      const colors = {
+        intermediate: "#b5d99c",
+        advanced: "#e8a87c",
+        expert: "#e87c7c",
+      };
+      const rings = ["intermediate", "advanced", "expert"];
+
+      function arc(r1, r2, a1, a2) {
+        const x1 = cx + r1 * Math.cos(a1),
+          y1 = cy + r1 * Math.sin(a1);
+        const x2 = cx + r2 * Math.cos(a1),
+          y2 = cy + r2 * Math.sin(a1);
+        const x3 = cx + r2 * Math.cos(a2),
+          y3 = cy + r2 * Math.sin(a2);
+        const x4 = cx + r1 * Math.cos(a2),
+          y4 = cy + r1 * Math.sin(a2);
+        return `M ${x1} ${y1} L ${x2} ${y2} A ${r2} ${r2} 0 0 1 ${x3} ${y3} L ${x4} ${y4} A ${r1} ${r1} 0 0 0 ${x1} ${y1} Z`;
+      }
+
+      // Build paths once, update fills on change
+      const pathMap = new Map();
+
+      function buildPaths() {
+        rings.forEach((level, ringIndex) => {
+          const r1 = innerR + ringIndex * ringWidth + ringIndex * ringGap;
+          const r2 = r1 + ringWidth;
+          const rows = document.querySelectorAll(`tr.${level}`);
+          const n = rows.length;
+          const anglePerSeg = (2 * Math.PI) / n;
+          const innerInset = Math.asin(gapPx / 2 / r1);
+          const outerInset = Math.asin(gapPx / 2 / r2);
+
+          rows.forEach((row, i) => {
+            const cb = row.querySelector("input[type=checkbox]");
+            const midAngle = -Math.PI / 2 + i * anglePerSeg + anglePerSeg / 2;
+            const a1inner = midAngle - anglePerSeg / 2 + innerInset;
+            const a2inner = midAngle + anglePerSeg / 2 - innerInset;
+            const a1outer = midAngle - anglePerSeg / 2 + outerInset;
+            const a2outer = midAngle + anglePerSeg / 2 - outerInset;
+
+            const xi1 = cx + r1 * Math.cos(a1inner),
+              yi1 = cy + r1 * Math.sin(a1inner);
+            const xo1 = cx + r2 * Math.cos(a1outer),
+              yo1 = cy + r2 * Math.sin(a1outer);
+            const xo2 = cx + r2 * Math.cos(a2outer),
+              yo2 = cy + r2 * Math.sin(a2outer);
+            const xi2 = cx + r1 * Math.cos(a2inner),
+              yi2 = cy + r1 * Math.sin(a2inner);
+            const d = `M ${xi1} ${yi1} L ${xo1} ${yo1} A ${r2} ${r2} 0 0 1 ${xo2} ${yo2} L ${xi2} ${yi2} A ${r1} ${r1} 0 0 0 ${xi1} ${yi1} Z`;
+
+            const path = document.createElementNS(
+              "http://www.w3.org/2000/svg",
+              "path",
+            );
+            path.setAttribute("d", d);
+            path.setAttribute("fill", "transparent");
+            path.setAttribute("stroke", "#888");
+            path.setAttribute("stroke-width", "1.5");
+            path.style.transition = "fill 0.4s ease";
+            svgEl.appendChild(path);
+            pathMap.set(cb, { path, level });
+          });
+        });
+      }
+
+      const WORKER_URL =
+        "https://haven-skills-proxy.dave-cartwright.workers.dev";
+
+      async function loadState() {
+        const res = await fetch(WORKER_URL);
+        const data = await res.json();
+        const checkboxes = data?.checkboxes ?? {};
+        document.querySelectorAll("input[type=checkbox]").forEach((cb) => {
+          const id = cb.closest("tr")?.dataset.id;
+          if (id && checkboxes[id]) cb.checked = true;
+        });
+        update();
+      }
+
+      async function saveState() {
+        const checkboxes = {};
+        document.querySelectorAll("input[type=checkbox]").forEach((cb) => {
+          const id = cb.closest("tr")?.dataset.id;
+          if (id) checkboxes[id] = cb.checked;
+        });
+        await fetch(WORKER_URL, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ checkboxes }),
+        });
+      }
+
+      function update() {
+        pathMap.forEach(({ path, level }, cb) => {
+          const checked = cb.checked;
+          path.setAttribute("fill", checked ? colors[level] : "transparent");
+          path.setAttribute("stroke", checked ? "#1a1a1a" : "#888");
+        });
+      }
+
+      buildPaths();
+      document.querySelectorAll("input[type=checkbox]").forEach((cb, i) => {
+        cb.closest("tr").dataset.id = i;
+        cb.addEventListener("change", () => {
+          update();
+          saveState();
+        });
+      });
+      loadState();
+    </script>
+  </body>
+</html>

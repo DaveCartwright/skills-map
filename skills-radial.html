@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skills Radial Chart</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background: #1a1a1a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        font-family: "Patrick Hand", cursive;
+      }
+      svg text {
+        font-family: "Patrick Hand", cursive;
+        fill: #eee;
+        font-size: 13px;
+      }
+      .segment {
+        cursor: pointer;
+        transition: opacity 0.2s;
+      }
+      .segment:hover {
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <svg id="chart" width="600" height="600" viewBox="0 0 600 600"></svg>
+
+    <script>
+      const skills = [
+        { label: "TDD", level: 3 },
+        { label: "BDD", level: 1 },
+        { label: "Clean Code", level: 2 },
+        { label: "Prod Ready", level: 2 },
+        { label: "SOLID", level: 2 },
+        { label: "DDD", level: 1 },
+        { label: "REST", level: 2 },
+        { label: "EDA", level: 1 },
+        { label: "Microservices", level: 2 },
+        { label: "Serverless", level: 1 },
+        { label: "JS", level: 2 },
+        { label: "TS", level: 2 },
+        { label: "Web Dev", level: 2 },
+        { label: "React", level: 1 },
+        { label: "Next.js", level: 1 },
+        { label: "Node.js", level: 2 },
+        { label: "SQL", level: 2 },
+        { label: "ORM", level: 2 },
+        { label: "PostgreSQL", level: 2 },
+        { label: "Redis", level: 1 },
+        { label: "S3", level: 1 },
+        { label: "Messaging", level: 2 },
+        { label: "SQS/SNS", level: 1 },
+        { label: "Security", level: 2 },
+        { label: "Lean", level: 2 },
+        { label: "Agile", level: 2 },
+      ];
+
+      const colors = {
+        1: "#b5d99c", // green  - intermediate
+        2: "#e8a87c", // orange - advanced
+        3: "#e87c7c", // red    - expert
+      };
+
+      const cx = 300,
+        cy = 300;
+      const innerR = 60;
+      const ringWidth = 70;
+      const gap = 0.03; // radians gap between segments
+
+      const n = skills.length;
+      const anglePerSlice = (2 * Math.PI) / n;
+      const svg = document.getElementById("chart");
+
+      skills.forEach((skill, i) => {
+        const startAngle = i * anglePerSlice - Math.PI / 2 + gap / 2;
+        const endAngle = startAngle + anglePerSlice - gap;
+
+        for (let ring = 1; ring <= 3; ring++) {
+          const r1 = innerR + (ring - 1) * ringWidth;
+          const r2 = innerR + ring * ringWidth;
+          const filled = skill.level >= ring;
+
+          const x1 = cx + r1 * Math.cos(startAngle);
+          const y1 = cy + r1 * Math.sin(startAngle);
+          const x2 = cx + r2 * Math.cos(startAngle);
+          const y2 = cy + r2 * Math.sin(startAngle);
+          const x3 = cx + r2 * Math.cos(endAngle);
+          const y3 = cy + r2 * Math.sin(endAngle);
+          const x4 = cx + r1 * Math.cos(endAngle);
+          const y4 = cy + r1 * Math.sin(endAngle);
+
+          const path = document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "path",
+          );
+          const d = [
+            `M ${x1} ${y1}`,
+            `L ${x2} ${y2}`,
+            `A ${r2} ${r2} 0 0 1 ${x3} ${y3}`,
+            `L ${x4} ${y4}`,
+            `A ${r1} ${r1} 0 0 0 ${x1} ${y1}`,
+            "Z",
+          ].join(" ");
+
+          path.setAttribute("d", d);
+          path.setAttribute("fill", filled ? colors[ring] : "#2e2e2e");
+          path.setAttribute("stroke", "#1a1a1a");
+          path.setAttribute("stroke-width", "2");
+          path.classList.add("segment");
+          svg.appendChild(path);
+        }
+
+        // Label
+        const labelR = innerR + 3 * ringWidth + 18;
+        const midAngle = startAngle + (anglePerSlice - gap) / 2;
+        const lx = cx + labelR * Math.cos(midAngle);
+        const ly = cy + labelR * Math.sin(midAngle);
+
+        const text = document.createElementNS(
+          "http://www.w3.org/2000/svg",
+          "text",
+        );
+        text.setAttribute("x", lx);
+        text.setAttribute("y", ly);
+        text.setAttribute("text-anchor", "middle");
+        text.setAttribute("dominant-baseline", "middle");
+        text.textContent = skill.label;
+        svg.appendChild(text);
+      });
+    </script>
+  </body>
+</html>
